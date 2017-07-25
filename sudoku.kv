@@ -1,0 +1,117 @@
+#:kivy 1.10.0
+
+<MenuScreen>:
+    AnchorLayout:
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 2
+            size_hint: 0.5, 0.5
+
+            Label:
+                text: 'SUDOKU'
+                font_size: self.height
+                size_hint: 1, 2
+            Label:
+            Button:
+                text: 'Start'
+                font_size: self.height * 0.5
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'game'
+            Button:
+                text: 'Help'
+                font_size: self.height * 0.5
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'help'
+            Button:
+                text: 'Credits'
+                font_size: self.height * 0.5
+                on_press:
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'credits'
+
+<GameScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        Button:
+            text: '<<'
+            font_size: self.height * 0.4
+            size_hint: 0.05, 0.05
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'menu'
+        BoxLayout:
+            orientation: 'horizontal'
+            BoxLayout:
+                orientation: 'vertical'
+                AnchorLayout:
+                    SudokuBoard:
+                        size_hint: 0.5, 0.5
+                AnchorLayout:
+                    size_hint: 1, 0.15
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        padding: 20
+                        spacing: 10
+                        Button:
+                            text: 'Submit'
+                            font_size: self.height * 0.4
+                        Button:
+                            text: 'Next'
+                            font_size: self.height * 0.4
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint_max_x: 400
+                Label:
+                    text: 'Difficulty'
+                    size_hint: 1, 0.5
+                Label:
+                    text: 'Color'
+                    size_hint: 1 , 0.5
+                AnchorLayout:
+                    anchor_x: 'center'
+                    anchor_y: 'center'
+                    Numpad:
+                        size_hint: 0.7, 0.8
+                AnchorLayout:
+                    anchor_x: 'center'
+                    anchor_y: 'center'
+                    ColorFilter:
+
+<VerticalSeparator>:
+	id: v_separator
+	size_hint_x: None
+	width: 5
+	canvas:
+		Color:
+			rgb: 1., 1., 1.
+		Rectangle:
+			pos: 0, v_separator.center_y
+			size: 1, v_separator.height
+
+<HorizontalSeparator>:
+
+<HelpScreen>:
+    AnchorLayout:
+        anchor_x: 'left'
+        anchor_y: 'top'
+        Button:
+            text: '<<'
+            font_size: self.height * 0.4
+            size_hint: 0.05, 0.05
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'menu'
+
+<CreditsScreen>:
+    AnchorLayout:
+        anchor_x: 'left'
+        anchor_y: 'top'
+        Button:
+            text: '<<'
+            font_size: self.height * 0.4
+            size_hint: 0.05, 0.05
+            on_press:
+                root.manager.transition.direction = 'right'
+                root.manager.current = 'menu'
